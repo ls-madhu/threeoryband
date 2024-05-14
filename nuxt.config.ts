@@ -16,7 +16,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@dargmuesli/nuxt-cookie-control',
     'nuxt-aos',
-    "nuxt-anchorscroll"
+    'nuxt-anchorscroll',
+    'nuxt-icon',
+    "@nuxt/image"
   ],
   googleFonts: {
     families: {
