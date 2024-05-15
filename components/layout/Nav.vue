@@ -1,13 +1,21 @@
 <template>
-  <nav class="main-nav fixed w-full top-0">
-    <ul class="flex flex-row justify-between font-bold items-center">
-      <li :class="{ active: activeSection === 'tours-events' }" @click="scrollTo('#tours-events')">
-        Tours & Events
-      </li>
+  <nav
+    :class="[
+      'main-nav top-0 fixed w-full h-20 z-50 bg-gray-900 border-b border-white/10 px-4 transition-all duration-300',
+      hidden ? 'sm:-top-36' : 'sm:top-0',
+    ]">
+    <ul class="flex justify-around font-bold items-center h-full max-w-screen-xl mx-auto">
+      <li :class="{ active: activeSection === 'shows' }" @click="scrollTo('#shows')">Shows</li>
       <li :class="{ active: activeSection === 'artists' }" @click="scrollTo('#artists')">
         Artists
       </li>
-      <li :class="{ active: activeSection === 'home' }" @click="scrollTo('#home')">Home/Logo</li>
+      <div class="h-full">
+        <NuxtImg
+          alt="Three Logo"
+          class="h-full max-h-full w-auto p-2 md:h-32 md:max-h-none md:p-0"
+          src="/images/logo-white.webp"
+          @click="scrollTo('#home')" />
+      </div>
       <li :class="{ active: activeSection === 'gallery' }" @click="scrollTo('#gallery')">
         Gallery
       </li>
@@ -15,17 +23,27 @@
     </ul>
   </nav>
 </template>
+
 <script setup lang="ts">
+interface Props {
+  hidden: boolean;
+}
+
+defineProps<Props>();
+
 const { y } = useScroll(window);
 const { scrollToAnchor, scrollToTop } = useAnchorScroll({
+  scrollOptions: {
+    behavior: 'smooth',
+    offsetTop: -80,
+  },
   toTop: {
     scrollOptions: {
       behavior: 'smooth',
-      offsetTop: 0,
     },
   },
 });
-const sections = ['tours-events', 'artists', 'home', 'gallery', 'about'];
+const sections = ['shows', 'artists', 'home', 'gallery', 'about'];
 
 const activeSection = computed(() => {
   let active = 'home';
@@ -33,7 +51,7 @@ const activeSection = computed(() => {
     const el = document?.getElementById(sectionId);
     if (el) {
       const { top, height } = el.getBoundingClientRect();
-      const offsetTop = top + window.scrollY;
+      const offsetTop = top + window.scrollY - 80;
       if (y.value >= offsetTop && y.value < offsetTop + height) {
         active = sectionId;
       }
@@ -41,23 +59,20 @@ const activeSection = computed(() => {
   });
   return active;
 });
-const scrollTo = (id) => {
+const scrollTo = (id: string) => {
   scrollToAnchor(id);
 };
 </script>
+
 <style lang="scss" scoped>
 .main-nav {
-  @apply text-white;
-  min-height: 50px;
   ul {
-    @apply px-6;
-    height: 50px;
     li {
-      @apply cursor-pointer;
+      @apply cursor-pointer transition-colors uppercase text-xs sm:text-sm;
     }
   }
   .active {
-    @apply underline;
+    @apply text-orange-500;
   }
 }
 </style>

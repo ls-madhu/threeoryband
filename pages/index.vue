@@ -1,10 +1,27 @@
 <template>
   <div>
-    <LayoutNav />
-    <section id="home" class="main-section bg-gray-900">
-      <div class="min-h-96 h-full" data-aos="fade-right" data-aos-duration="1000">Home</div>
+    <div :v-element-visibility="onElementVisibility">
+      <LayoutNav :hidden="isHeaderNavIsVisible" />
+    </div>
+    <section id="home" class="relative main-section bg-gray-900 px-12">
+      <NuxtImg
+        class="object-cover absolute top-0 left-0 w-full h-full opacity-50"
+        src="/images/hero.jpeg" />
+      <NuxtImg
+        alt="Three Logo"
+        class="relative h-[50vh] w-auto mx-auto hidden sm:block"
+        src="/images/logo-white.webp" />
+      <nav
+        class="header-nav sm:flex items-center justify-around hidden relative w-full h-16 bg-gray-900 px-4 mt-8 rounded-full"
+        id="header-nav"
+        ref="headerNavRef">
+        <li @click="scrollTo('#shows')">Shows</li>
+        <li @click="scrollTo('#artists')">Artists</li>
+        <li @click="scrollTo('#gallery')">Gallery</li>
+        <li @click="scrollTo('#about')">About</li>
+      </nav>
     </section>
-    <section id="tours-events" class="px-6 pt-12 pb-16 bg-gray-800">
+    <section id="shows" class="px-6 pt-12 pb-16 bg-gray-800">
       <div class="flex flex-col sm:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
         <div class="flex-1 flex flex-col items-start">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
@@ -65,6 +82,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { VNodeRef } from 'vue';
+
 useSeoMeta({
   title: 'Threeory | Amazing music for all',
   description: 'Amazing music',
@@ -126,11 +145,36 @@ const artists = [
     role: 'Tablist',
   },
 ];
+
+const headerNavRef = ref(null);
+const isHeaderNavIsVisible = useElementVisibility(headerNavRef);
+
+function onElementVisibility(state: boolean) {
+  isHeaderNavIsVisible.value = state;
+}
+
+const { scrollToAnchor, scrollToTop } = useAnchorScroll({
+  toTop: {
+    scrollOptions: {
+      behavior: 'smooth',
+      offsetTop: 0,
+    },
+  },
+});
+
+const scrollTo = (id: string) => {
+  scrollToAnchor(id);
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
 .main-section {
   min-height: 100vh !important;
-  @apply px-6 py-12;
+}
+
+.header-nav {
+  li {
+    @apply list-none uppercase cursor-pointer font-bold text-sm;
+  }
 }
 </style>
