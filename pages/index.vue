@@ -72,12 +72,91 @@
         </div>
       </div>
     </section>
-    <section id="gallery" class="main-section bg-gray-800">
-      <div class="min-h-96 h-full" data-aos="fade-right" data-aos-duration="1000">Gallery</div>
+    <section id="gallery" class="bg-gray-800 px-6 pt-12 pb-16">
+      <div class="max-w-screen-xl mx-auto">
+        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Gallery</h2>
+        <div class="grid auto-rows-[300px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+          <div
+            class="row-span-1 rounded-xl overflow-hidden"
+            :class="index === 4 || index === 7 ? 'lg:col-span-2' : ''"
+            data-aos="fade-up"
+            data-aos-duration="500"
+            v-for="index in 10">
+            <NuxtImg class="object-cover w-full h-full" src="/images/hero.jpeg" />
+          </div>
+        </div>
+      </div>
     </section>
-    <section id="about" class="main-section bg-gray-900">
-      <div class="min-h-96 h-full" data-aos="fade-right" data-aos-duration="1000">About</div>
+    <section id="about" class="bg-gray-900 px-6 pt-8 pb-10">
+      <div class="mx-auto max-w-screen-xl py-4 sm:pt-8 md:pt-12">
+        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">
+          Contact Us
+        </h2>
+        <div class="mt-8 flex flex-col gap-4 md:flex-row">
+          <div class="flex-1 md:basis-1/2">
+            <p class="font-primary font-bold text-gray-400 sm:text-lg">
+              For inquiries, wholesale ticket purchases, and accessibility arrangements, please
+              reach out to us at :
+            </p>
+            <div class="grid grid-cols-1 gap-x-4 gap-y-8 px-4 py-8 min-[480px]:grid-cols-2">
+              <ContactInfo icon="fe:phone" name="Phone">
+                <a class="hover-underline text-xs uppercase text-sand/80" href="tel:+1234567890"
+                  >+(123) 456-7890</a
+                >
+              </ContactInfo>
+              <ContactInfo icon="heroicons:envelope-solid" name="Email">
+                <a
+                  class="hover-underline text-xs uppercase text-sand/80"
+                  href="mailto:help@threeory.com"
+                  >help@threeory.com</a
+                >
+              </ContactInfo>
+              <ContactInfo icon="fluent:location-ripple-16-filled" name="Location">
+                <span class="text-xs uppercase text-sand/80">Hyderabad</span>
+              </ContactInfo>
+              <ContactInfo icon="bxl:instagram-alt" name="Socials">
+                <div class="flex gap-x-4 text-xs uppercase">
+                  <NuxtLink
+                    class="hover-underline text-xs text-sand/80"
+                    :external="true"
+                    target="_blank"
+                    to="https://www.instagram.com/threeoryband">
+                    Instagram
+                  </NuxtLink>
+                  <NuxtLink
+                    class="hover-underline text-xs text-sand/80"
+                    :external="true"
+                    target="_blank"
+                    to="https://www.youtube.com/@threeoryband">
+                    Youtube
+                  </NuxtLink>
+                </div>
+              </ContactInfo>
+            </div>
+          </div>
+          <form class="flex flex-1 flex-col gap-y-3 text-sm font-medium md:basis-1/2">
+            <ContactInput placeholder="Name" type="text" />
+            <ContactInput placeholder="Email" type="email" />
+            <ContactInput placeholder="Phone" type="tel" />
+            <textarea
+              class="resize-none rounded-sm border border-white/40 bg-gray-900 px-4 py-3 transition-colors focus-visible:border focus-visible:border-white focus-visible:outline-none"
+              placeholder="Message"
+              rows="5" />
+            <button class="rounded-sm bg-orange-500 p-4" type="button">Submit</button>
+          </form>
+        </div>
+      </div>
     </section>
+    <footer class="bg-gray-900 border-t border-gray-700">
+      <div
+        class="mx-auto flex max-w-screen-xl flex-col justify-between gap-x-8 gap-y-6 px-4 py-6 text-xs font-medium uppercase text-gray-400 sm:flex-row">
+        <p>&copy; Threeory 2024.</p>
+        <div class="flex gap-x-4 sm:gap-x-8">
+          <NuxtLink class="hover-underline" to="/"> Terms & Conditions </NuxtLink>
+          <NuxtLink class="hover-underline" to="/"> Privacy Policy </NuxtLink>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
