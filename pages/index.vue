@@ -3,23 +3,39 @@
     <div :v-element-visibility="onElementVisibility">
       <LayoutNav :hidden="isHeaderNavIsVisible" />
     </div>
-    <section id="home" class="relative main-section bg-gray-900 px-12">
+    <section id="home" class="relative main-section bg-gray-900 px-12 mist-container">
+      <div class="mist-layer"></div>
       <NuxtImg
-        class="object-cover absolute top-0 left-0 w-full h-full opacity-50"
+        class="object-cover absolute top-0 left-0 w-full h-full opacity-60"
         src="/images/hero.jpeg" />
-      <NuxtImg
-        alt="Three Logo"
-        class="relative h-[50vh] w-auto mx-auto hidden sm:block"
-        src="/images/logo-white.webp" />
-      <nav
-        class="header-nav sm:flex items-center justify-around hidden relative w-full h-16 bg-gray-900 px-4 mt-8 rounded-full"
-        id="header-nav"
-        ref="headerNavRef">
-        <li @click="scrollTo('#shows')">Shows</li>
-        <li @click="scrollTo('#artists')">Artists</li>
-        <li @click="scrollTo('#gallery')">Gallery</li>
-        <li @click="scrollTo('#about')">About</li>
-      </nav>
+      <div class="absolute bottom-2 left-0 right-0 flex flex-col min-h-[55vh]">
+        <div ref="headerNavRef" id="header-nav"></div>
+        <transition name="fade" mode="out-in">
+          <NuxtImg
+            v-show="isHeaderNavIsVisible"
+            alt="Three Logo"
+            class="relative w-auto mx-auto hidden sm:block"
+            src="/images/logo-white.webp" />
+        </transition>
+        <transition name="fade" mode="out-in">
+          <div class="mx-auto mt-5 sm:flex hidden" v-show="isHeaderNavIsVisible">
+            <ul
+              class="header-nav landing-nav px-10 gap-x-10 flex flex-row items-center justify-around relative h-12 rounded-full">
+              <li @click="scrollTo('#shows')">Shows</li>
+              <li @click="scrollTo('#artists')">Artists</li>
+              <li @click="scrollTo('#gallery')">Gallery</li>
+              <li @click="scrollTo('#about')">About</li>
+            </ul>
+          </div>
+        </transition>
+      </div>
+      <div class="absolute bottom-6 left-0 right-0 flex flex-row justify-center">
+        <a
+          class="rounded mx-auto mt-12 text-xs uppercase px-4 py-1"
+          style="border: solid 1px white; border-radius: 20px; background: rgba(0, 0, 0, 0.4)">
+          Scroll
+        </a>
+      </div>
     </section>
     <section id="shows" class="px-6 pt-12 pb-16 bg-gray-800">
       <div class="flex flex-col sm:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
@@ -255,5 +271,26 @@ const scrollTo = (id: string) => {
   li {
     @apply list-none uppercase cursor-pointer font-bold text-sm;
   }
+}
+.landing-nav {
+  border: solid 2px #fafafa;
+  background: rgba(0, 0, 0, 0.4);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
+.mist-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
 }
 </style>
