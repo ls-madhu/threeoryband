@@ -4,7 +4,7 @@
       <LayoutNav :hidden="isHeaderNavIsVisible" />
     </div>
     <section id="home" class="relative main-section bg-gray-900 px-12 mist-container">
-      <div class="mist-layer"></div>
+      <!-- <div class="mist-layer"></div> -->
       <NuxtImg
         class="object-cover absolute top-0 left-0 w-full h-full opacity-60"
         src="/images/hero.jpeg" />
@@ -163,7 +163,7 @@
         </div>
       </div>
     </section>
-    <footer class="bg-gray-900 border-t border-gray-700">
+    <footer class="bg-gray-900 border-t border-gray-700 footer">
       <div
         class="mx-auto flex max-w-screen-xl flex-col justify-between gap-x-8 gap-y-6 px-4 py-6 text-xs font-medium uppercase text-gray-400 sm:flex-row">
         <p>&copy; Threeory 2024.</p>
@@ -292,5 +292,11 @@ const scrollTo = (id: string) => {
   left: 0;
   width: 200%;
   height: 200%;
+}
+footer {
+  min-height: 400px;
+  background: url(/images/footerbg.png) no-repeat;
+  background-size: 50% auto;
+  background-position: center bottom;
 }
 </style>
