@@ -1,6 +1,6 @@
 <template>
   <div
-    class="row-span-1 rounded-xl transition duration-200 shadow-input shadow-none p-4 bg-gray-900 border-white/[0.1] border justify-between flex flex-col space-y-4 group"
+    class="row-span-1 rounded-xl transition duration-200 shadow-input shadow-none p-4 bg-gray-800 border-white/[0.1] border justify-between flex flex-col space-y-4 group"
     data-aos="fade-up"
     data-aos-duration="500">
     <NuxtImg

@@ -37,7 +37,7 @@
         </a>
       </div>
     </section>
-    <section id="shows" class="px-6 pt-12 pb-16 bg-gray-800">
+    <section id="shows" class="px-6 pt-12 pb-16 bg-gray-900">
       <div class="flex flex-col sm:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
         <div class="flex-1 flex flex-col items-start">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
@@ -75,7 +75,7 @@
         </div>
       </div>
     </section>
-    <section id="artists" class="px-6 pt-12 pb-16 bg-gray-900">
+    <section id="artists" class="px-6 pt-12 pb-16 bg-gray-800">
       <div class="max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Artists</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto mt-8">
@@ -85,6 +85,19 @@
             :name="artist.name"
             :role="artist.role"
             v-for="artist in artists" />
+        </div>
+      </div>
+    </section>
+    <section id="youtube" class="bg-gray-900 px-6 pt-12 pb-16">
+      <div class="max-w-screen-xl mx-auto">
+        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Videos</h2>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4 max-w-7xl mx-auto mt-8">
+          <VideoCard
+            :href="video.href"
+            :image="video.image"
+            :title="video.title"
+            v-for="video in videos" />
         </div>
       </div>
     </section>
@@ -238,6 +251,63 @@ const artists = [
     instagram: 'https://www.instagram.com/pavantabla/',
     name: 'Pavan Kumar MS',
     role: 'Tablist',
+  },
+];
+
+const videos = [
+  {
+    href: 'https://www.youtube.com/watch?v=caZWZ2iz3mI',
+    image:
+      'https://i.ytimg.com/vi/caZWZ2iz3mI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvLc_2sSKHLlpe2H-Mx2s-6S692A',
+    title: 'AR Rahman Medley Mashup Cover Part-2',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=SIcsSasiuks',
+    image:
+      'https://i.ytimg.com/vi/SIcsSasiuks/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC-HBS2ejcCSAq-sdy0jVmglDmPkw',
+    title: 'Animal Movie Intro',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=wLsBYGHgGhY',
+    image:
+      'https://i.ytimg.com/vi/wLsBYGHgGhY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBB336I0xz1-7mbC1qFTvW1-CFk9w',
+    title: 'A R Rahman Medley Mashup Cover Part-1',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=96aSeIN0Ibw',
+    image:
+      'https://i.ytimg.com/vi/96aSeIN0Ibw/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBSg4jPflX-Tq4BQJF7iSiz6DXXhQ',
+    title: 'Urvasi Urvasi Cover',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=KlhnWkrKGGg',
+    image:
+      'https://i.ytimg.com/vi/KlhnWkrKGGg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCLo_ydItd9qJQDjK8xgoWu0EZz_g',
+    title: 'Threeory at Out of the Box Hyderabad',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=C-gErcZGRpY',
+    image:
+      'https://i.ytimg.com/vi/C-gErcZGRpY/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAgcVzqAVGZTQV-9wz_-rgLCKjtsg',
+    title: 'Iddarammayilatho Violin Song Cover',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=pSfAcU6VG1A',
+    image:
+      'https://i.ytimg.com/vi/pSfAcU6VG1A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDbXpkyAlK1Eoa-ZrQA_-g9Pry85w',
+    title: 'Afreen Cover by Nusrat Fateh Ali Khan',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=REU57FLy9nU',
+    image:
+      'https://i.ytimg.com/vi/REU57FLy9nU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvnZcyx6u-NBhkRi8p37EfR6mKdw',
+    title: 'Love Me Now Cover',
+  },
+  {
+    href: 'https://www.youtube.com/watch?v=pVDz5ZPLkbA',
+    image:
+      'https://i.ytimg.com/vi/pVDz5ZPLkbA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBzZXUuls59eQWcSCd4OEtgRPMpTg',
+    title: 'Shape Of You Cover',
   },
 ];
 
