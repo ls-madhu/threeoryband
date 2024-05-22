@@ -4,7 +4,8 @@
       'main-nav top-0 fixed w-full h-16 z-50 border-b border-white/10 px-4 transition-all duration-300',
       hidden ? 'sm:-top-36' : 'sm:top-0',
     ]">
-    <ul class="flex justify-around font-bold items-center h-full max-w-screen-xl mx-auto">
+    <ul
+      class="flex justify-between sm:justify-around font-bold items-center h-full max-w-screen-xl mx-auto">
       <li :class="{ active: activeSection === 'shows' }" @click="scrollTo('#shows')">Shows</li>
       <li :class="{ active: activeSection === 'artists' }" @click="scrollTo('#artists')">
         Artists
@@ -20,6 +21,7 @@
         Gallery
       </li>
       <li :class="{ active: activeSection === 'about' }" @click="scrollTo('#about')">About</li>
+      <LayoutMobileNav />
     </ul>
   </nav>
 </template>
@@ -32,15 +34,10 @@ interface Props {
 defineProps<Props>();
 
 const { y } = useScroll(window);
-const { scrollToAnchor, scrollToTop } = useAnchorScroll({
+const { scrollToAnchor } = useAnchorScroll({
   scrollOptions: {
     behavior: 'smooth',
-    offsetTop: -80,
-  },
-  toTop: {
-    scrollOptions: {
-      behavior: 'smooth',
-    },
+    offsetTop: -62,
   },
 });
 const sections = ['shows', 'artists', 'home', 'gallery', 'about'];
@@ -59,6 +56,7 @@ const activeSection = computed(() => {
   });
   return active;
 });
+
 const scrollTo = (id: string) => {
   scrollToAnchor(id);
 };
@@ -70,7 +68,7 @@ const scrollTo = (id: string) => {
   border: solid 1px #000000;
   ul {
     li {
-      @apply cursor-pointer transition-colors uppercase text-xs sm:text-sm;
+      @apply cursor-pointer transition-colors uppercase text-xs sm:text-sm hidden sm:list-item;
     }
   }
   .active {
