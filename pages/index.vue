@@ -151,7 +151,7 @@
       <div class="relative mx-auto max-w-screen-xl py-4 sm:pt-8 md:pt-12">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Shop</h2>
         <div
-          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          class="mx-auto p-4 bg-black/40 rounded-2xl mt-8 grid max-w-screen-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <MerchandiseCard
             :name="merch.name"
             :price="merch.price"
