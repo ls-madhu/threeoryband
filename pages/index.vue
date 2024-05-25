@@ -62,7 +62,7 @@
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shows-bg.png)]"></div>
       <div class="relative flex flex-col md:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
         <div
-          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-2xl border">
+          class="flex-1 flex flex-col items-start bg-black/70 p-4 sm:p-8 border-black rounded-2xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
           <div class="flex flex-col gap-8 mt-8">
             <TourItem />
@@ -80,7 +80,7 @@
           /></NuxtLink>
         </div>
         <div
-          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-2xl border">
+          class="flex-1 flex flex-col items-start bg-black/70 p-4 sm:p-8 border-black rounded-2xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Shows</h2>
           <div class="flex flex-col gap-8 mt-8">
             <ShowItem />
