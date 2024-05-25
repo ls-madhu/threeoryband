@@ -46,7 +46,7 @@
           </div>
         </transition>
       </div>
-      <div class="mx-2 py-2 px-4 bg-orange-900/40 rounded-lg relative">
+      <div class="mx-2 py-2 px-4 bg-orange-700 rounded-lg relative sm:hidden">
         <TourItemSmall />
       </div>
       <div class="absolute bottom-6 left-0 right-0 flex flex-row justify-center">
