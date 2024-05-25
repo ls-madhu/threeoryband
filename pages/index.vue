@@ -37,9 +37,12 @@
         </a>
       </div>
     </section>
-    <section id="shows" class="px-6 pt-12 pb-16 bg-gray-900">
-      <div class="flex flex-col sm:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
-        <div class="flex-1 flex flex-col items-start">
+    <section id="shows" class="px-6 relative pt-12 pb-16 bg-gray-900">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shows-bg.png)]"></div>
+      <div class="relative flex flex-col sm:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
+        <div
+          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-3xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
           <div class="flex flex-col gap-8 mt-8">
             <TourItem />
@@ -56,7 +59,8 @@
               name="ri:arrow-right-line"
           /></NuxtLink>
         </div>
-        <div class="flex-1 flex flex-col items-start">
+        <div
+          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-3xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Shows</h2>
           <div class="flex flex-col gap-8 mt-8">
             <ShowItem />
@@ -75,10 +79,13 @@
         </div>
       </div>
     </section>
-    <section id="artists" class="px-6 pt-12 pb-16 bg-gray-800">
-      <div class="max-w-screen-xl mx-auto">
+    <section id="artists" class="relative px-6 pt-12 pb-16 bg-gray-800">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/artists-bg.png)]"></div>
+      <div class="relative max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Artists</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto mt-8">
+        <div
+          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <ArtistCard
             :image="artist.image"
             :instagram="artist.instagram"
@@ -86,10 +93,25 @@
             :role="artist.role"
             v-for="artist in artists" />
         </div>
+        <h2 class="text-3xl font-bold mt-12" data-aos="fade-right" data-aos-duration="1000">
+          Artists Alt
+        </h2>
+        <div
+          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <ArtistCard
+            :image="artist.image"
+            :instagram="artist.instagram"
+            :name="artist.name"
+            :role="artist.role"
+            :with-texture="true"
+            v-for="artist in artistsAlt" />
+        </div>
       </div>
     </section>
-    <section id="youtube" class="bg-gray-900 px-6 pt-12 pb-16">
-      <div class="max-w-screen-xl mx-auto">
+    <section id="videos" class="relative bg-gray-900 px-6 pt-12 pb-16">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/videos-bg.png)]"></div>
+      <div class="relative max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Videos</h2>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4 max-w-7xl mx-auto mt-8">
@@ -101,8 +123,10 @@
         </div>
       </div>
     </section>
-    <section id="gallery" class="bg-gray-800 px-6 pt-12 pb-16">
-      <div class="max-w-screen-xl mx-auto">
+    <section id="gallery" class="relative bg-gray-800 px-6 pt-12 pb-16">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/gallery-bg.png)]"></div>
+      <div class="relative max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Gallery</h2>
         <div class="grid auto-rows-[300px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
           <div
@@ -116,13 +140,26 @@
         </div>
       </div>
     </section>
-    <section id="about" class="bg-gray-900 px-6 pt-8 pb-10">
-      <div class="mx-auto max-w-screen-xl py-4 sm:pt-8 md:pt-12">
-        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">
-          Contact Us
-        </h2>
+    <section id="about" class="relative bg-gray-900 px-6 pt-8 pb-10">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover grayscale bg-center bg-[url(/images/about-bg.png)]"></div>
+      <div class="relative mx-auto max-w-screen-xl py-4 sm:pt-8 md:pt-12">
+        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">About Us</h2>
+        <p class="mt-2 bg-black/40 p-4 md:p-8 rounded-lg">
+          Welcome to Threeory Bands, Hyderabad's premier musical ensemble, known and celebrated
+          around the world for our eclectic blend of genres and unforgettable performances. Formed
+          by a group of passionate musicians in the heart of Hyderabad, Threeory Bands combines the
+          essence of traditional Indian music with contemporary sounds, creating a unique auditory
+          experience that resonates globally. Our journey began in this vibrant city, and over the
+          years, we have evolved, experimenting with various styles and expanding our repertoire to
+          include rock, jazz, classical, and fusion. Today, we perform on stages across the world,
+          sharing our dynamic and versatile sound with diverse audiences. Each member brings a
+          wealth of talent and creativity, contributing to our mission of pushing musical
+          boundaries, entertaining, and inspiring with every note. Join us as we continue to
+          captivate and enchant listeners everywhere
+        </p>
         <div class="mt-8 flex flex-col gap-4 md:flex-row">
-          <div class="flex-1 md:basis-1/2">
+          <div class="flex-1 md:basis-1/2 bg-black/40 p-4 md:p-8 rounded-lg">
             <p class="font-primary font-bold text-gray-400 sm:text-lg">
               For inquiries, wholesale ticket purchases, and accessibility arrangements, please
               reach out to us at :
@@ -248,6 +285,63 @@ const artists = [
   },
   {
     image: '/images/artists/pavan-kumar.jpeg',
+    instagram: 'https://www.instagram.com/pavantabla/',
+    name: 'Pavan Kumar MS',
+    role: 'Tablist',
+  },
+];
+
+const artistsAlt = [
+  {
+    image: '/images/artists-alt/talur-devendra-kumar.jpeg',
+    instagram: 'https://www.instagram.com/talur_devendra_kumar/',
+    name: 'Talur Devendra Kumar',
+    role: 'Keyboardist',
+  },
+  {
+    image: '/images/artists-alt/datta-sai-prasa.jpeg',
+    instagram: 'https://www.instagram.com/datta_sai/',
+    name: 'Datta Sai Prasa',
+    role: 'Violinist',
+  },
+  {
+    image: '/images/artists-alt/tarun-vishal.jpeg',
+    instagram: 'https://www.instagram.com/tarun_vishal/',
+    name: 'Tarun Vishal',
+    role: 'Drummer',
+  },
+  {
+    image: '/images/artists-alt/imtiakum.jpeg',
+    instagram: 'https://www.instagram.com/imtiakum_vibegroove/',
+    name: 'Imtiakum',
+    role: 'Bassist',
+  },
+  {
+    image: '/images/artists-alt/sentilong.jpeg',
+    instagram: 'https://www.instagram.com/sentialong/',
+    name: 'Sentilong Ao',
+    role: 'Guitarist',
+  },
+  {
+    image: '/images/artists-alt/syntyche-mongro.jpeg',
+    instagram: 'https://www.instagram.com/synth_mongro/',
+    name: 'Syntyche Mongro',
+    role: 'Female Vocalist',
+  },
+  {
+    image: '/images/artists-alt/akhileshwar-chennu.jpeg',
+    instagram: 'https://www.instagram.com/akhileshwarrc/',
+    name: 'Akhileshwar Chennu',
+    role: 'Male Vocalist',
+  },
+  {
+    image: '/images/artists-alt/irfan-ahmed-khan.jpeg',
+    instagram: 'https://www.instagram.com/irfan_ahmed_khan_sitarist/',
+    name: 'Irfan Ahmed Khan',
+    role: 'Sitarist',
+  },
+  {
+    image: '/images/artists-alt/pavan-kumar.jpeg',
     instagram: 'https://www.instagram.com/pavantabla/',
     name: 'Pavan Kumar MS',
     role: 'Tablist',
