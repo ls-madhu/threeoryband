@@ -9,9 +9,22 @@
       ref="heroSection">
       <!-- <div class="mist-layer"></div> -->
       <NuxtImg
-        class="object-cover absolute top-0 left-0 w-full h-full opacity-60"
+        class="object-cover hidden sm:block absolute top-0 left-0 w-full h-full opacity-60"
         src="/images/hero.jpeg" />
-      <div class="absolute bottom-2 left-0 right-0 flex flex-col min-h-[55vh]">
+      <NuxtImg
+        class="object-cover sm:hidden absolute top-0 left-0 w-full h-full opacity-60"
+        src="/images/hero-mobile.jpeg" />
+      <div class="absolute bottom-2 left-0 right-0 flex flex-col min-h-[40vh] sm:hidden">
+        <div class="w-full" ref="mobileLogoRef" id="mobile-logo"></div>
+        <transition name="fade" mode="out-in">
+          <NuxtImg
+            v-show="isMobileLogoVisible"
+            alt="Three Logo"
+            class="relative w-2/3 mx-auto"
+            src="/images/logo.png" />
+        </transition>
+      </div>
+      <div class="absolute bottom-2 left-0 right-0 sm:flex flex-col min-h-[55vh] hidden">
         <div ref="headerNavRef" id="header-nav"></div>
         <transition name="fade" mode="out-in">
           <NuxtImg
@@ -42,10 +55,10 @@
         </a>
       </div>
     </section>
-    <section id="shows" class="px-6 relative pt-12 pb-16 bg-gray-900">
+    <section id="shows" class="px-2 sm:px-4 md:px-6 relative pt-12 pb-16 bg-gray-900">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shows-bg.png)]"></div>
-      <div class="relative flex flex-col sm:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
+      <div class="relative flex flex-col md:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
         <div
           class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-2xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
@@ -84,7 +97,7 @@
         </div>
       </div>
     </section>
-    <section id="artists" class="relative px-6 pt-12 pb-16 bg-gray-800">
+    <section id="artists" class="relative px-2 sm:px-4 md:px-6 pt-12 pb-16 bg-gray-800">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/artists-bg.png)]"></div>
       <div class="relative max-w-screen-xl mx-auto">
@@ -96,7 +109,8 @@
             :instagram="artist.instagram"
             :name="artist.name"
             :role="artist.role"
-            v-for="artist in artists" />
+            :with-texture="true"
+            v-for="artist in artistsAlt" />
         </div>
         <h2 class="text-3xl font-bold mt-12" data-aos="fade-right" data-aos-duration="1000">
           Artists Alt
@@ -108,12 +122,11 @@
             :instagram="artist.instagram"
             :name="artist.name"
             :role="artist.role"
-            :with-texture="true"
-            v-for="artist in artistsAlt" />
+            v-for="artist in artists" />
         </div>
       </div>
     </section>
-    <section id="videos" class="relative bg-gray-900 px-6 pt-12 pb-16">
+    <section id="videos" class="relative bg-gray-900 px-2 sm:px-4 md:px-6 pt-12 pb-16">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/videos-bg.png)]"></div>
       <div class="relative max-w-screen-xl mx-auto">
@@ -128,7 +141,7 @@
         </div>
       </div>
     </section>
-    <section id="gallery" class="relative bg-gray-800 px-6 pt-12 pb-16">
+    <section id="gallery" class="relative bg-gray-800 px-2 sm:px-4 md:px-6 pt-12 pb-16">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/gallery-bg.png)]"></div>
       <div class="relative max-w-screen-xl mx-auto">
@@ -159,12 +172,12 @@
         </div>
       </div>
     </section>
-    <section id="about" class="relative bg-gray-900 px-6 pt-8 pb-10">
+    <section id="about" class="relative bg-gray-900 px-2 sm:px-4 md:px-6 pt-8 pb-10">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover grayscale bg-center bg-[url(/images/about-bg.png)]"></div>
       <div class="relative mx-auto max-w-screen-xl py-4 sm:pt-8 md:pt-12">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">About Us</h2>
-        <p class="mt-2 bg-black/40 p-4 md:p-8 rounded-2xl">
+        <p class="mt-2 bg-black/40 p-4 md:p-8 rounded-2xl text-justify">
           Welcome to Threeory Bands, Hyderabad's premier musical ensemble, known and celebrated
           around the world for our eclectic blend of genres and unforgettable performances. Formed
           by a group of passionate musicians in the heart of Hyderabad, Threeory Bands combines the
@@ -472,6 +485,8 @@ const merchandiseData = [
 
 const headerNavRef = ref(null);
 const isHeaderNavIsVisible = useElementVisibility(headerNavRef);
+const mobileLogoRef = ref(null);
+const isMobileLogoVisible = useElementVisibility(mobileLogoRef);
 const heroSection = ref(null);
 const heroSectionIsVisible = useElementVisibility(heroSection);
 

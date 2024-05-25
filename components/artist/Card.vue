@@ -4,7 +4,7 @@
     data-aos="fade-up"
     data-aos-duration="500">
     <NuxtImg
-      class="object-cover object-[50%_30%] grayscale transition-all duration-500 group-hover/artist:grayscale-0 group-hover/artist:scale-105"
+      class="object-cover object-[50%_30%] w-full grayscale transition-all duration-500 group-hover/artist:grayscale-0 group-hover/artist:scale-105"
       :src="image" />
     <div
       class="absolute left-0 top-0 h-full w-full bg-[linear-gradient(180deg,rgba(255,255,255,0)_40%,rgba(28,28,28,1)_100%),url(/images/texture.svg)]"></div>
