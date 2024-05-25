@@ -20,7 +20,7 @@
           <NuxtImg
             v-show="isMobileLogoVisible"
             alt="Three Logo"
-            class="relative w-2/3 mx-auto"
+            class="relative w-4/5 mx-auto"
             src="/images/logo.png" />
         </transition>
       </div>
