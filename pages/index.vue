@@ -3,24 +3,23 @@
     <div :v-element-visibility="onElementVisibility">
       <LayoutNav :hidden="isHeaderNavIsVisible" />
     </div>
-    <section
-      id="home"
-      class="relative main-section bg-gray-900 px-12 mist-container"
-      ref="heroSection">
+    <section id="home" class="relative main-section bg-gray-900" ref="heroSection">
       <!-- <div class="mist-layer"></div> -->
+      <div class="min-h-20"></div>
+
       <NuxtImg
         class="object-cover hidden sm:block absolute top-0 left-0 w-full h-full opacity-60"
         src="/images/hero.jpeg" />
       <NuxtImg
         class="object-cover sm:hidden absolute top-0 left-0 w-full h-full opacity-60"
         src="/images/hero-mobile.jpeg" />
-      <div class="absolute bottom-2 left-0 right-0 flex flex-col min-h-[40vh] sm:hidden">
+      <div class="absolute bottom-2 left-0 right-0 flex flex-col min-h-[60vh] sm:hidden">
         <div class="w-full" ref="mobileLogoRef" id="mobile-logo"></div>
         <transition name="fade" mode="out-in">
           <NuxtImg
             v-show="isMobileLogoVisible"
             alt="Three Logo"
-            class="relative w-4/5 mx-auto"
+            class="relative w-full mx-auto"
             src="/images/logo.png" />
         </transition>
       </div>
@@ -46,6 +45,9 @@
             </ul>
           </div>
         </transition>
+      </div>
+      <div class="mx-2 py-2 px-4 bg-orange-900/40 rounded-lg relative">
+        <TourItemSmall />
       </div>
       <div class="absolute bottom-6 left-0 right-0 flex flex-row justify-center">
         <a
@@ -531,13 +533,6 @@ const scrollTo = (id: string) => {
 .fade-leave-to
 /* .fade-leave-active in <2.1.8 */ {
   opacity: 0;
-}
-.mist-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
 }
 footer {
   min-height: 400px;
