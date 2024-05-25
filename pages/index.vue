@@ -3,7 +3,10 @@
     <div :v-element-visibility="onElementVisibility">
       <LayoutNav :hidden="isHeaderNavIsVisible" />
     </div>
-    <section id="home" class="relative main-section bg-gray-900 px-12 mist-container">
+    <section
+      id="home"
+      class="relative main-section bg-gray-900 px-12 mist-container"
+      ref="heroSection">
       <!-- <div class="mist-layer"></div> -->
       <NuxtImg
         class="object-cover absolute top-0 left-0 w-full h-full opacity-60"
@@ -23,7 +26,9 @@
               class="header-nav landing-nav px-10 gap-x-10 flex flex-row items-center justify-around relative h-12 rounded-full">
               <li @click="scrollTo('#shows')">Shows</li>
               <li @click="scrollTo('#artists')">Artists</li>
+              <li @click="scrollTo('#videos')">Videos</li>
               <li @click="scrollTo('#gallery')">Gallery</li>
+              <li @click="scrollTo('#shop')">Shop</li>
               <li @click="scrollTo('#about')">About</li>
             </ul>
           </div>
@@ -42,7 +47,7 @@
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shows-bg.png)]"></div>
       <div class="relative flex flex-col sm:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
         <div
-          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-3xl border">
+          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-2xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
           <div class="flex flex-col gap-8 mt-8">
             <TourItem />
@@ -60,7 +65,7 @@
           /></NuxtLink>
         </div>
         <div
-          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-3xl border">
+          class="flex-1 flex flex-col items-start bg-black/70 p-8 border-black rounded-2xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Shows</h2>
           <div class="flex flex-col gap-8 mt-8">
             <ShowItem />
@@ -114,7 +119,7 @@
       <div class="relative max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Videos</h2>
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4 max-w-7xl mx-auto mt-8">
+          class="grid grid-cols-1 sm:grid-cols-2 rounded-2xl md:grid-cols-3 lg:grid-cols-4 p-4 bg-black/70 gap-x-6 gap-y-4 max-w-7xl mx-auto mt-8">
           <VideoCard
             :href="video.href"
             :image="video.image"
@@ -140,12 +145,26 @@
         </div>
       </div>
     </section>
+    <section id="shop" class="relative bg-gray-900 px-6 pt-8 pb-10">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shop-bg.png)]"></div>
+      <div class="relative mx-auto max-w-screen-xl py-4 sm:pt-8 md:pt-12">
+        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Shop</h2>
+        <div
+          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <MerchandiseCard
+            :name="merch.name"
+            :price="merch.price"
+            v-for="merch in merchandiseData" />
+        </div>
+      </div>
+    </section>
     <section id="about" class="relative bg-gray-900 px-6 pt-8 pb-10">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover grayscale bg-center bg-[url(/images/about-bg.png)]"></div>
       <div class="relative mx-auto max-w-screen-xl py-4 sm:pt-8 md:pt-12">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">About Us</h2>
-        <p class="mt-2 bg-black/40 p-4 md:p-8 rounded-lg">
+        <p class="mt-2 bg-black/40 p-4 md:p-8 rounded-2xl">
           Welcome to Threeory Bands, Hyderabad's premier musical ensemble, known and celebrated
           around the world for our eclectic blend of genres and unforgettable performances. Formed
           by a group of passionate musicians in the heart of Hyderabad, Threeory Bands combines the
@@ -159,7 +178,7 @@
           captivate and enchant listeners everywhere
         </p>
         <div class="mt-8 flex flex-col gap-4 md:flex-row">
-          <div class="flex-1 md:basis-1/2 bg-black/40 p-4 md:p-8 rounded-lg">
+          <div class="flex-1 md:basis-1/2 bg-black/40 p-4 md:p-8 rounded-2xl">
             <p class="font-primary font-bold text-gray-400 sm:text-lg">
               For inquiries, wholesale ticket purchases, and accessibility arrangements, please
               reach out to us at :
@@ -213,6 +232,13 @@
         </div>
       </div>
     </section>
+    <button
+      aria-label="Scroll To Top"
+      class="rounded-full bg-white w-12 h-12 text-black fixed bottom-0 right-0 m-8"
+      @click="scrollToTop"
+      v-if="!heroSectionIsVisible">
+      <Icon name="radix-icons:arrow-up" />
+    </button>
     <footer class="bg-gray-900 border-t border-gray-700 footer">
       <div
         class="mx-auto flex max-w-screen-xl flex-col justify-between gap-x-8 gap-y-6 px-4 py-6 text-xs font-medium uppercase text-gray-400 sm:flex-row">
@@ -405,8 +431,49 @@ const videos = [
   },
 ];
 
+const merchandiseData = [
+  {
+    category: '',
+    image: '',
+    name: 'Merchandise Item 1',
+    price: 1999,
+  },
+  {
+    category: '',
+    image: '',
+    name: 'Merchandise Item 2',
+    price: 200,
+  },
+  {
+    category: '',
+    image: '',
+    name: 'Merchandise Item 3',
+    price: 1299,
+  },
+  {
+    category: '',
+    image: '',
+    name: 'Merchandise Item 4',
+    price: 2000,
+  },
+  {
+    category: '',
+    image: '',
+    name: 'Merchandise Item 5',
+    price: 1500,
+  },
+  {
+    category: '',
+    image: '',
+    name: 'Merchandise Item 6',
+    price: 699,
+  },
+];
+
 const headerNavRef = ref(null);
 const isHeaderNavIsVisible = useElementVisibility(headerNavRef);
+const heroSection = ref(null);
+const heroSectionIsVisible = useElementVisibility(heroSection);
 
 function onElementVisibility(state: boolean) {
   isHeaderNavIsVisible.value = state;

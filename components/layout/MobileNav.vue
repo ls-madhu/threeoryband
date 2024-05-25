@@ -44,7 +44,9 @@ const scrollTo = (id: string) => {
       </div>
       <button class="mobile-nav_item" @click="scrollTo('#shows')">Shows</button>
       <button class="mobile-nav_item" @click="scrollTo('#artists')">Artists</button>
+      <button class="mobile-nav_item" @click="scrollTo('#videos')">Videos</button>
       <button class="mobile-nav_item" @click="scrollTo('#gallery')">Gallery</button>
+      <button class="mobile-nav_item" @click="scrollTo('#shop')">Shop</button>
       <button class="mobile-nav_item" @click="scrollTo('#about')">About</button>
     </div>
     <div

@@ -10,6 +10,7 @@
       <li :class="{ active: activeSection === 'artists' }" @click="scrollTo('#artists')">
         Artists
       </li>
+      <li :class="{ active: activeSection === 'videos' }" @click="scrollTo('#videos')">Videos</li>
       <div class="h-full">
         <NuxtImg
           alt="Three Logo"
@@ -20,6 +21,7 @@
       <li :class="{ active: activeSection === 'gallery' }" @click="scrollTo('#gallery')">
         Gallery
       </li>
+      <li :class="{ active: activeSection === 'shop' }" @click="scrollTo('#shop')">Shop</li>
       <li :class="{ active: activeSection === 'about' }" @click="scrollTo('#about')">About</li>
       <LayoutMobileNav />
     </ul>
@@ -40,7 +42,7 @@ const { scrollToAnchor } = useAnchorScroll({
     offsetTop: -62,
   },
 });
-const sections = ['shows', 'artists', 'home', 'gallery', 'about'];
+const sections = ['shows', 'artists', 'videos', 'home', 'gallery', 'shop', 'about'];
 
 const activeSection = computed(() => {
   let active = 'home';
