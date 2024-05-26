@@ -9,11 +9,11 @@
     <div
       class="absolute left-0 top-0 h-full w-full bg-[linear-gradient(180deg,rgba(255,255,255,0)_40%,rgba(28,28,28,1)_100%),url(/images/texture.svg)]"></div>
     <div class="absolute bottom-0 left-0 w-full p-4">
-      <h3 class="text-sm font-bold text-background">
+      <h3 class="text-2xl font-bold text-background">
         {{ name }}
       </h3>
       <div class="flex items-center justify-between gap-4">
-        <p class="text-[10px] font-semibold uppercase tracking-wide">
+        <p class="text-sm font-semibold tracking-wide">
           {{ role }}
         </p>
         <NuxtLink class="p-1" :external="true" target="_blank" :to="instagram">
