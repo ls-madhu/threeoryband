@@ -1,36 +1,29 @@
 <template>
   <article
-    class="flex flex-col sm:flex-row items-start gap-4 text-xs font-semibold"
+    class="flex flex-col gap-y-3 md:flex-row items-start w-full border-b border-b-white/15 py-5"
     data-aos="fade-up"
     data-aos-duration="500">
-    <div
-      class="flex flex-row sm:flex-col items-center rounded-lg overflow-hidden text-sm font-semibold border border-white">
-      <div class="px-2 sm:px-4 py-0.5 sm:py-2 bg-white text-gray-900">JUN</div>
-      <div class="px-2 sm:px-4 py-0.5 sm:py-2">06</div>
+    <time
+      class="font-bold text-sm text-orange-400 leading-normal tracking-wide whitespace-nowrap"
+      datetime=""
+      >SEP 13 FRI</time
+    >
+    <div class="flex flex-col gap-1 md:gap-2 grow lg:flex-row">
+      <div class="text-lg font-medium leading-normal md:mx-8">
+        Tabularasa, Alfresco Bar, Taj Krishna
+      </div>
+      <div class="leading-normal md:mx-8">Banjara Hills, Hyderabad</div>
     </div>
-    <div class="flex flex-col gap-1.5">
-      <h3 class="text-base font-bold line-clamp-2">
-        Winchendon MA - Damian McGinty: A Million Little Ways Tour
-      </h3>
-      <div class="flex items-center gap-1.5 font-normal text-gray-300">
-        <Icon name="ri:alarm-line" />
-        <div class="">Thu, Jun 6</div>
-      </div>
-      <div class="flex items-center gap-1.5 font-normal text-gray-300">
-        <Icon name="ri:map-pin-2-line" />
-        <div class="line-clamp-1">Winchendon History and Cultural Center, Winchendon MA</div>
-      </div>
-      <div class="mt-2 flex gap-4">
-        <NuxtLink
-          class="flex items-center gap-1 rounded-full px-3 py-1 border border-white transition-colors hover:text-gray-900 hover:bg-white"
-          :external="true"
-          target="_blank"
-          to="/">
-          <span>Book Tickets</span>
-          <Icon name="ri:external-link-fill" />
-        </NuxtLink>
-        <button class="hover:underline hover:underline-offset-2">Know More</button>
-      </div>
+    <div class="flex justify-center items-center gap-4">
+      <NuxtLink
+        class="flex items-center gap-1 rounded-full px-3 py-1 border border-white transition-colors hover:text-gray-900 hover:bg-white"
+        :external="true"
+        target="_blank"
+        to="/">
+        <span class="text-xs whitespace-nowrap">Book Tickets</span>
+        <Icon name="ri:external-link-fill" size="0.75em" />
+      </NuxtLink>
+      <button class="text-xs whitespace-nowrap">Know More</button>
     </div>
   </article>
 </template>

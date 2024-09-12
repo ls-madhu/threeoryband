@@ -61,7 +61,7 @@
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shows-bg.png)]"></div>
       <div class="relative flex flex-col md:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
-        <div
+        <!-- <div
           class="flex-1 flex flex-col items-start bg-black/70 p-4 sm:p-8 border-black rounded-2xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
           <div class="flex flex-col gap-8 mt-8">
@@ -78,11 +78,14 @@
               class="relative left-0 group-hover:left-1 transition-all"
               name="ri:arrow-right-line"
           /></NuxtLink>
-        </div>
+        </div> -->
         <div
           class="flex-1 flex flex-col items-start bg-black/70 p-4 sm:p-8 border-black rounded-2xl border">
           <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Shows</h2>
-          <div class="flex flex-col gap-8 mt-8">
+          <div class="flex flex-col w-full mt-8">
+            <ShowItem />
+            <ShowItem />
+            <ShowItem />
             <ShowItem />
             <ShowItem />
             <ShowItem />
@@ -112,9 +115,9 @@
             :name="artist.name"
             :role="artist.role"
             :with-texture="true"
-            v-for="artist in artistsAlt" />
+            v-for="artist in artists" />
         </div>
-        <h2 class="text-3xl font-bold mt-12" data-aos="fade-right" data-aos-duration="1000">
+        <!-- <h2 class="text-3xl font-bold mt-12" data-aos="fade-right" data-aos-duration="1000">
           Artists Alt
         </h2>
         <div
@@ -124,7 +127,18 @@
             :instagram="artist.instagram"
             :name="artist.name"
             :role="artist.role"
-            v-for="artist in artists" />
+            v-for="artist in artistsAlt" />
+        </div> -->
+      </div>
+    </section>
+    <section id="clients" class="relative px-2 sm:px-4 md:px-6 pt-12 pb-16 bg-gray-800">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/gallery-bg.png)]"></div>
+      <div class="relative max-w-screen-xl mx-auto">
+        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Clients</h2>
+        <div
+          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <NuxtImg src="/images/client.webp" v-for="client in 8" />
         </div>
       </div>
     </section>
@@ -134,7 +148,7 @@
       <div class="relative max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Videos</h2>
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 rounded-2xl md:grid-cols-3 lg:grid-cols-4 p-4 bg-black/70 gap-x-6 gap-y-4 max-w-7xl mx-auto mt-8">
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 rounded-2xl p-4 bg-black/70 gap-x-6 gap-y-4 max-w-7xl mx-auto mt-8">
           <VideoCard
             :href="video.href"
             :image="video.image"
@@ -171,6 +185,25 @@
             :name="merch.name"
             :price="merch.price"
             v-for="merch in merchandiseData" />
+        </div>
+      </div>
+    </section>
+    <section id="team" class="relative px-2 sm:px-4 md:px-6 pt-12 pb-16 bg-gray-800">
+      <div
+        class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/artists-bg.png)]"></div>
+      <div class="relative max-w-screen-xl mx-auto">
+        <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">
+          Support Team
+        </h2>
+        <div
+          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <ArtistCard
+            :image="artist.image"
+            :instagram="artist.instagram"
+            :name="artist.name"
+            :role="artist.role"
+            :with-texture="true"
+            v-for="artist in artists.slice(0, 4)" />
         </div>
       </div>
     </section>
@@ -277,63 +310,6 @@ useSeoMeta({
 
 const artists = [
   {
-    image: '/images/artists/mark-talur.jpeg',
-    instagram: 'https://www.instagram.com/talur_devendra_kumar/',
-    name: 'Mark Talur',
-    role: 'Keyboardist',
-  },
-  {
-    image: '/images/artists/datta-sai-prasa.jpeg',
-    instagram: 'https://www.instagram.com/datta_sai/',
-    name: 'Datta Sai Prasa',
-    role: 'Violinist',
-  },
-  {
-    image: '/images/artists/tarun-vishal.jpeg',
-    instagram: 'https://www.instagram.com/tarun_vishal/',
-    name: 'Tarun Vishal',
-    role: 'Drummer',
-  },
-  {
-    image: '/images/artists/imtiakum.jpeg',
-    instagram: 'https://www.instagram.com/imtiakum_vibegroove/',
-    name: 'Imtiakum',
-    role: 'Bassist',
-  },
-  {
-    image: '/images/artists/sentilong.jpeg',
-    instagram: 'https://www.instagram.com/sentialong/',
-    name: 'Sentilong Ao',
-    role: 'Guitarist',
-  },
-  {
-    image: '/images/artists/syntyche-mongro.jpeg',
-    instagram: 'https://www.instagram.com/synth_mongro/',
-    name: 'Syntyche Mongro',
-    role: 'Female Vocalist',
-  },
-  {
-    image: '/images/artists/akhileshwar-chennu.jpeg',
-    instagram: 'https://www.instagram.com/akhileshwarrc/',
-    name: 'Akhileshwar Chennu',
-    role: 'Male Vocalist',
-  },
-  {
-    image: '/images/artists/irfan-ahmed-khan.jpeg',
-    instagram: 'https://www.instagram.com/irfan_ahmed_khan_sitarist/',
-    name: 'Irfan Ahmed Khan',
-    role: 'Sitarist',
-  },
-  {
-    image: '/images/artists/pavan-kumar.jpeg',
-    instagram: 'https://www.instagram.com/pavantabla/',
-    name: 'Pavan Kumar MS',
-    role: 'Tablist',
-  },
-];
-
-const artistsAlt = [
-  {
     image: '/images/artists-alt/talur-devendra-kumar.jpeg',
     instagram: 'https://www.instagram.com/talur_devendra_kumar/',
     name: 'Talur Devendra Kumar',
@@ -371,7 +347,7 @@ const artistsAlt = [
   },
   {
     image: '/images/artists-alt/akhileshwar-chennu.jpeg',
-    instagram: 'https://www.instagram.com/akhileshwarrc/',
+    instagram: 'https://www.instagram.com/artsofakhil/',
     name: 'Akhileshwar Chennu',
     role: 'Male Vocalist',
   },
@@ -389,57 +365,114 @@ const artistsAlt = [
   },
 ];
 
+const artistsAlt = [
+  {
+    image: '/images/artists/mark-talur.jpeg',
+    instagram: 'https://www.instagram.com/talur_devendra_kumar/',
+    name: 'Mark Talur',
+    role: 'Keyboardist',
+  },
+  {
+    image: '/images/artists/datta-sai-prasa.jpeg',
+    instagram: 'https://www.instagram.com/datta_sai/',
+    name: 'Datta Sai Prasa',
+    role: 'Violinist',
+  },
+  {
+    image: '/images/artists/tarun-vishal.jpeg',
+    instagram: 'https://www.instagram.com/tarun_vishal/',
+    name: 'Tarun Vishal',
+    role: 'Drummer',
+  },
+  {
+    image: '/images/artists/imtiakum.jpeg',
+    instagram: 'https://www.instagram.com/imtiakum_vibegroove/',
+    name: 'Imtiakum',
+    role: 'Bassist',
+  },
+  {
+    image: '/images/artists/sentilong.jpeg',
+    instagram: 'https://www.instagram.com/sentialong/',
+    name: 'Sentilong Ao',
+    role: 'Guitarist',
+  },
+  {
+    image: '/images/artists/syntyche-mongro.jpeg',
+    instagram: 'https://www.instagram.com/synth_mongro/',
+    name: 'Syntyche Mongro',
+    role: 'Female Vocalist',
+  },
+  {
+    image: '/images/artists/akhileshwar-chennu.jpeg',
+    instagram: 'https://www.instagram.com/artsofakhil/',
+    name: 'Akhileshwar Chennu',
+    role: 'Male Vocalist',
+  },
+  {
+    image: '/images/artists/irfan-ahmed-khan.jpeg',
+    instagram: 'https://www.instagram.com/irfan_ahmed_khan_sitarist/',
+    name: 'Irfan Ahmed Khan',
+    role: 'Sitarist',
+  },
+  {
+    image: '/images/artists/pavan-kumar.jpeg',
+    instagram: 'https://www.instagram.com/pavantabla/',
+    name: 'Pavan Kumar MS',
+    role: 'Tablist',
+  },
+];
+
 const videos = [
   {
-    href: 'https://www.youtube.com/watch?v=caZWZ2iz3mI',
+    href: 'https://www.youtube.com/embed/caZWZ2iz3mI?si=-i1ABhfZ3pydkpBo',
     image:
       'https://i.ytimg.com/vi/caZWZ2iz3mI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvLc_2sSKHLlpe2H-Mx2s-6S692A',
     title: 'AR Rahman Medley Mashup Cover Part-2',
   },
   {
-    href: 'https://www.youtube.com/watch?v=SIcsSasiuks',
+    href: 'https://www.youtube.com/embed/SIcsSasiuks?si=aP9g2iwhMU8RV5WW',
     image:
       'https://i.ytimg.com/vi/SIcsSasiuks/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC-HBS2ejcCSAq-sdy0jVmglDmPkw',
     title: 'Animal Movie Intro',
   },
   {
-    href: 'https://www.youtube.com/watch?v=wLsBYGHgGhY',
+    href: 'https://www.youtube.com/embed/wLsBYGHgGhY?si=cucGEOIAW26_cqju',
     image:
       'https://i.ytimg.com/vi/wLsBYGHgGhY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBB336I0xz1-7mbC1qFTvW1-CFk9w',
     title: 'A R Rahman Medley Mashup Cover Part-1',
   },
   {
-    href: 'https://www.youtube.com/watch?v=96aSeIN0Ibw',
+    href: 'https://www.youtube.com/embed/96aSeIN0Ibw?si=VbSu4h08M0XkPtb8',
     image:
       'https://i.ytimg.com/vi/96aSeIN0Ibw/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBSg4jPflX-Tq4BQJF7iSiz6DXXhQ',
     title: 'Urvasi Urvasi Cover',
   },
   {
-    href: 'https://www.youtube.com/watch?v=KlhnWkrKGGg',
+    href: 'https://www.youtube.com/embed/KlhnWkrKGGg?si=Hr9aIJ21ICyik2Cz',
     image:
       'https://i.ytimg.com/vi/KlhnWkrKGGg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCLo_ydItd9qJQDjK8xgoWu0EZz_g',
     title: 'Threeory at Out of the Box Hyderabad',
   },
   {
-    href: 'https://www.youtube.com/watch?v=C-gErcZGRpY',
+    href: 'https://www.youtube.com/embed/C-gErcZGRpY?si=C2AFEscL6GMHzyYA',
     image:
       'https://i.ytimg.com/vi/C-gErcZGRpY/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAgcVzqAVGZTQV-9wz_-rgLCKjtsg',
     title: 'Iddarammayilatho Violin Song Cover',
   },
   {
-    href: 'https://www.youtube.com/watch?v=pSfAcU6VG1A',
+    href: 'https://www.youtube.com/embed/pSfAcU6VG1A?si=Kpymhw0xPl_X6B7c',
     image:
       'https://i.ytimg.com/vi/pSfAcU6VG1A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDbXpkyAlK1Eoa-ZrQA_-g9Pry85w',
     title: 'Afreen Cover by Nusrat Fateh Ali Khan',
   },
   {
-    href: 'https://www.youtube.com/watch?v=REU57FLy9nU',
+    href: 'https://www.youtube.com/embed/REU57FLy9nU?si=ezhWAlfghXYEduN-',
     image:
       'https://i.ytimg.com/vi/REU57FLy9nU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvnZcyx6u-NBhkRi8p37EfR6mKdw',
     title: 'Love Me Now Cover',
   },
   {
-    href: 'https://www.youtube.com/watch?v=pVDz5ZPLkbA',
+    href: 'https://www.youtube.com/embed/pVDz5ZPLkbA?si=gQZ87Wk6doZs3J9d',
     image:
       'https://i.ytimg.com/vi/pVDz5ZPLkbA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBzZXUuls59eQWcSCd4OEtgRPMpTg',
     title: 'Shape Of You Cover',

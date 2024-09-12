@@ -19,4 +19,8 @@ html {
   min-height: 100% !important;
   min-width: 100% !important;
 }
+
+body.modal-open {
+  overflow: hidden;
+}
 </style>
