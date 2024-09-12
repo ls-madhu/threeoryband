@@ -137,7 +137,7 @@
       <div class="relative max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Clients</h2>
         <div
-          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-2 justify-items-center gap-4 md:grid-cols-3 lg:grid-cols-4">
           <NuxtImg src="/images/client.webp" v-for="client in 8" />
         </div>
       </div>
