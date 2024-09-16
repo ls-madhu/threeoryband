@@ -10,7 +10,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    '@nuxtjs/google-fonts',
     'nuxt-viewport',
     '@nuxtjs/device',
     '@pinia/nuxt',
@@ -18,13 +17,9 @@ export default defineNuxtConfig({
     'nuxt-aos',
     'nuxt-anchorscroll',
     'nuxt-icon',
-    "@nuxt/image"
+    '@nuxt/image',
+    '@nuxt/fonts',
   ],
-  googleFonts: {
-    families: {
-      Roboto: true,
-    },
-  },
   app: {
     rootTag: 'body',
     head: {

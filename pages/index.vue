@@ -57,49 +57,14 @@
         </a>
       </div>
     </section>
-    <section id="shows" class="px-2 sm:px-4 md:px-6 relative pt-12 pb-16 bg-gray-900">
+    <section id="shows" class="relative min-h-screen px-2 sm:px-4 md:px-6 pt-12 pb-16 bg-gray-900">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shows-bg.png)]"></div>
-      <div class="relative flex flex-col md:flex-row gap-12 sm:gap-10 max-w-screen-xl mx-auto">
-        <!-- <div
-          class="flex-1 flex flex-col items-start bg-black/70 p-4 sm:p-8 border-black rounded-2xl border">
-          <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Tours</h2>
-          <div class="flex flex-col gap-8 mt-8">
-            <TourItem />
-            <TourItem />
-            <TourItem />
-            <TourItem />
-          </div>
-          <NuxtLink
-            class="flex items-center gap-2 rounded-full px-6 py-2 mt-8 border border-white transition-colors hover:text-gray-900 hover:bg-white group"
-            to="shows">
-            <div>Show More</div>
-            <Icon
-              class="relative left-0 group-hover:left-1 transition-all"
-              name="ri:arrow-right-line"
-          /></NuxtLink>
-        </div> -->
-        <div
-          class="flex-1 flex flex-col items-start bg-black/70 p-4 sm:p-8 border-black rounded-2xl border">
-          <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Shows</h2>
-          <div class="flex flex-col w-full mt-8">
-            <ShowItem />
-            <ShowItem />
-            <ShowItem />
-            <ShowItem />
-            <ShowItem />
-            <ShowItem />
-            <ShowItem />
-          </div>
-          <NuxtLink
-            class="flex items-center gap-2 rounded-full px-6 py-2 mt-8 border border-white transition-colors hover:text-gray-900 hover:bg-white group"
-            to="shows">
-            <div>Show More</div>
-            <Icon
-              class="relative left-0 group-hover:left-1 transition-all"
-              name="ri:arrow-right-line"
-          /></NuxtLink>
-        </div>
+      <div class="relative max-w-screen-xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8" data-aos="fade-right" data-aos-duration="1000">
+          Shows
+        </h2>
+        <ShowCalendar :events="result?.items" v-if="result?.items" />
       </div>
     </section>
     <section id="artists" class="relative px-2 sm:px-4 md:px-6 pt-12 pb-16 bg-gray-800">
@@ -108,7 +73,7 @@
       <div class="relative max-w-screen-xl mx-auto">
         <h2 class="text-3xl font-bold" data-aos="fade-right" data-aos-duration="1000">Artists</h2>
         <div
-          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          class="mx-auto mt-8 grid max-w-screen-2xl grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3">
           <ArtistCard
             :image="artist.image"
             :instagram="artist.instagram"
@@ -541,6 +506,26 @@ const { scrollToAnchor, scrollToTop } = useAnchorScroll({
 const scrollTo = (id: string) => {
   scrollToAnchor(id);
 };
+
+import axios from 'axios';
+
+defineProps<{
+  class: any;
+}>();
+const API_KEY = 'AIzaSyCOxdYNqZiLBb-ieJ5GjpJy0ZXD2iuyM7U';
+const CALENDAR_ID = 'madhusudhan.vinta@gmail.com';
+
+const result: any = ref();
+
+onMounted(() => {
+  axios
+    .get(
+      `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?eventTypes=default&key=${API_KEY}`
+    )
+    .then((resp: any) => {
+      result.value = resp.data;
+    });
+});
 </script>
 
 <style lang="scss" scoped>
