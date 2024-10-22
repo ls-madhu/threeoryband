@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full mx-auto" v-if="events?.length > 0">
-    <div class="bg-black shadow-lg overflow-y-hidden relative overflow-x-scroll">
+  <div class="w-full mx-auto h-[calc(100vh-64px)] sm:h-auto" v-if="events?.length > 0">
+    <div class="bg-black shadow-lg h-full overflow-y-hidden relative overflow-x-scroll">
       <div
         class="px-2 xs:px-4 py-3 bg-primary sticky top-0 left-0 w-full flex justify-between items-center">
         <button
@@ -18,41 +18,84 @@
           Next <Icon name="heroicons-solid:chevron-right" />
         </button>
       </div>
-      <div class="grid grid-cols-7 gap-[1px] bg-gray-800 min-w-[1024px]">
+      <div class="grid grid-cols-7 h-full gap-[1px] bg-gray-800">
         <!-- Days of the Week -->
         <div
           v-for="day in daysOfWeek"
           :key="day"
-          class="bg-black font-semibold text-white p-2 text-center">
+          class="bg-black text-[11px] xs:text-xs font-semibold uppercase text-white px-2 py-4 text-center">
           {{ day }}
         </div>
 
         <!-- Empty boxes for previous month days -->
-        <div v-for="n in firstDayOfMonth" :key="n" class="h-32 bg-black/50"></div>
+        <div v-for="n in firstDayOfMonth" :key="n" class="h-auto sm:h-32 bg-black/50"></div>
 
         <!-- Days of the current month -->
-        <div v-for="day in daysInMonth" :key="day" class="h-32 bg-black p-3">
-          <div class="font-bold text-white h-4 mb-2">{{ day }}</div>
-          <!-- Display events for the day -->
-          <div class="h-20 overflow-y-scroll">
-            <div
-              v-for="event in getEventsForDay(day)"
-              :key="event.id"
-              class="bg-primary text-xs font-medium px-3 py-2 mt-1 rounded-md">
-              <div>{{ (event.start.dateTime as Date).toLocaleString().slice(11, 16) }}</div>
-              <div class="text-sm">{{ event.summary }}</div>
+        <DialogRoot v-for="day in daysInMonth" :key="day">
+          <DialogTrigger class="h-auto sm:h-32 bg-black p-3">
+            <div class="font-bold text-white h-4 mb-2">{{ day }}</div>
+            <!-- Display events for the day -->
+            <div class="h-20 text-left overflow-y-scroll">
+              <div
+                v-for="event in getEventsForDay(day)"
+                :key="event.id"
+                class="bg-primary text-xs font-medium xs:px-3 xs:py-2 px-1.5 py-1 mt-1 rounded-md">
+                <div class="hidden xs:block">
+                  {{ (event.start.dateTime as Date).toLocaleString().slice(11, 16) }}
+                </div>
+                <div
+                  class="text-[10px] xs:text-xs xs:capitalize whitespace-nowrap uppercase overflow-x-clip text-ellipsis">
+                  {{ event.summary }}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </DialogTrigger>
+          <DialogPortal>
+            <DialogOverlay
+              class="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0 z-30" />
+            <DialogContent
+              class="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-full max-w-screen-sm translate-x-[-50%] translate-y-[-50%] focus:outline-none z-[100] p-6">
+              <div class="relative rounded-md bg-slate-900 p-6">
+                <div v-for="(event, index) in getEventsForDay(day)" :key="event.id">
+                  <div class="py-4" :class="index != 0 ? 'border-t border-white/15' : ''">
+                    <div class="text-sm text-primary mb-2 uppercase font-medium">
+                      {{ event.summary }}
+                    </div>
+                    <div class="text-xs mb-2 font-medium">
+                      {{ (event.start.dateTime as Date).toLocaleString().slice(11, 16) }} -
+                      {{ (event.end.dateTime as Date).toLocaleString().slice(11, 16) }}
+                    </div>
+                    <div class="text-[11px] text-gray-400 font-medium">{{ event.location }}</div>
+                  </div>
+                </div>
+                <DialogClose
+                  class="absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:outline-none"
+                  aria-label="Close">
+                  <Icon name="radix-icons:cross-2" />
+                </DialogClose>
+              </div>
+            </DialogContent>
+          </DialogPortal>
+        </DialogRoot>
 
         <!-- Empty boxes for previous month days -->
-        <div v-for="n in lastDayOfMonth" :key="n" class="h-32 bg-black/50"></div>
+        <div v-for="n in lastDayOfMonth" :key="n" class="h-auto sm:h-32 bg-black/50"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import {
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+} from 'radix-vue';
 import { ref, computed, onMounted } from 'vue';
 //   import { fetchEventsForMonth } from '@/services/calendarService' // Fetching events from a generic source
 

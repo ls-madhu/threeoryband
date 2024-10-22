@@ -57,11 +57,14 @@
         </a>
       </div>
     </section>
-    <section id="shows" class="relative min-h-screen px-2 sm:px-4 md:px-6 pt-12 pb-16 bg-gray-900">
+    <section id="shows" class="relative min-h-screen sm:px-4 md:px-6 pt-12 pb-16 bg-gray-900">
       <div
         class="absolute inset-0 blur-[1px] w-full h-full bg-fixed bg-cover bg-center bg-[url(/images/shows-bg.png)]"></div>
       <div class="relative max-w-screen-xl mx-auto">
-        <h2 class="text-3xl font-bold mb-8" data-aos="fade-right" data-aos-duration="1000">
+        <h2
+          class="text-3xl px-2 sm:px-0 font-bold mb-8"
+          data-aos="fade-right"
+          data-aos-duration="1000">
           Shows
         </h2>
         <ShowCalendar :events="result?.items" v-if="result?.items" />
