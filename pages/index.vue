@@ -9,7 +9,7 @@
 
       <NuxtImg
         class="object-cover hidden sm:block absolute top-0 left-0 w-full h-full opacity-60"
-        src="/images/hero.jpeg" />
+        src="/images/main-image.jpg" />
       <NuxtImg
         class="object-cover sm:hidden absolute top-0 left-0 w-full h-full opacity-60"
         src="/images/hero-mobile.jpeg" />
@@ -29,7 +29,7 @@
           <NuxtImg
             v-show="isHeaderNavIsVisible"
             alt="Three Logo"
-            class="relative w-auto mx-auto hidden sm:block"
+            class="relative w-auto h-64 mx-auto hidden sm:block"
             src="/images/logo-white.webp" />
         </transition>
         <transition name="fade" mode="out-in">
@@ -136,8 +136,10 @@
             :class="index === 4 || index === 7 ? 'lg:col-span-2' : ''"
             data-aos="fade-up"
             data-aos-duration="500"
-            v-for="index in 10">
-            <NuxtImg class="object-cover w-full h-full" src="/images/hero.jpeg" />
+            v-for="(image,index) in images"
+            :key="index">
+            <NuxtImg class="object-cover w-full h-80 opacity-85 hover:opacity-100" 
+            :src="image"  />
           </div>
         </div>
       </div>
@@ -445,6 +447,17 @@ const videos = [
       'https://i.ytimg.com/vi/pVDz5ZPLkbA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBzZXUuls59eQWcSCd4OEtgRPMpTg',
     title: 'Shape Of You Cover',
   },
+];
+const images = [
+  '/images/music_band1.jpg',
+  '/images/music_band2.jpg',
+  '/images/music_band1.jpg',
+  '/images/music_band2.jpg',
+  '/images/music_band1.jpg',
+  '/images/music_band2.jpg',
+  '/images/music_band1.jpg',
+  '/images/music_band2.jpg',
+  '/images/music_band1.jpg',
 ];
 
 const merchandiseData = [
