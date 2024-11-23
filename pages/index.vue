@@ -133,14 +133,49 @@
         <div class="grid auto-rows-[300px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
           <div
             class="row-span-1 rounded-xl overflow-hidden"
-            :class="index === 4 || index === 7 ? 'lg:col-span-2' : ''"
             data-aos="fade-up"
             data-aos-duration="500"
             v-for="(image,index) in images"
-            :key="index">
+            :key="index"
+            @click="openImage(index)">
             <NuxtImg class="object-cover w-full h-80 opacity-85 hover:opacity-100" 
             :src="image"  />
           </div>
+          <div 
+          v-if="isimageOpen"
+          class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          >
+          <div class="flex px-4">
+            <NuxtImg 
+            :src="images[currentindex]"
+            class="rounded-lg max-h-[80vh] shadow-lg"
+            />
+            <button
+            @click="prevImage"
+            :disabled="currentindex === 0"
+            class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white text-black p-2 rounded-full shadow-lg"
+          >
+          <img class="h-6 w-6"
+          src="/images/previous-icon.png" />
+          </button>
+
+          <button
+            @click="nextImage"
+            :disabled="currentindex === images.length - 1"
+            class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white text-black p-2 rounded-full shadow-lg"
+          >
+          <img class="h-6 w-6"
+          src="/images/next-icon.png" />
+          </button>
+          <button
+            @click="closeimage"
+            class="absolute top-16 bg-white right-4 text-white p-2 rounded-full shadow-lg"
+          >
+            <img class="w-6 h-6"
+            src="/images/close-icon.svg"/>
+          </button>
+          </div>
+        </div>
         </div>
       </div>
     </section>
@@ -455,9 +490,6 @@ const images = [
   '/images/music_band2.jpg',
   '/images/music_band1.jpg',
   '/images/music_band2.jpg',
-  '/images/music_band1.jpg',
-  '/images/music_band2.jpg',
-  '/images/music_band1.jpg',
 ];
 
 const merchandiseData = [
@@ -505,6 +537,8 @@ const mobileLogoRef = ref(null);
 const isMobileLogoVisible = useElementVisibility(mobileLogoRef);
 const heroSection = ref(null);
 const heroSectionIsVisible = useElementVisibility(heroSection);
+const isimageOpen = ref(false);
+const currentindex = ref(0);
 
 function onElementVisibility(state: boolean) {
   isHeaderNavIsVisible.value = state;
@@ -521,6 +555,25 @@ const { scrollToAnchor, scrollToTop } = useAnchorScroll({
 
 const scrollTo = (id: string) => {
   scrollToAnchor(id);
+};
+const openImage = (index) => {
+  currentindex.value = index;
+  isimageOpen.value = true;
+};
+
+const closeimage = () => {
+  isimageOpen.value = false;
+};
+
+const nextImage = () => {
+  currentindex.value =
+    (currentindex.value + 1) % images.length; 
+};
+
+const prevImage = () => {
+  currentindex.value =
+    (currentindex.value - 1 + images.length) %
+    images.length; 
 };
 
 import axios from 'axios';
